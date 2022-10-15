@@ -5,11 +5,12 @@ services:
   postgres:
     image: postgres:13
     environment:
-      - POSTGRES_DB= my_appdb
-      - POSTGRES_USER=ander
+      - POSTGRES_USER=root
       - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=my_appdb
+
     ports:
-      - 5432:5433
+      - 5432:5432
     volumes:
       - ~/postgres_data:/var/lib/postgresql/data"
 
@@ -19,4 +20,4 @@ services:
       - PGADMIN_DEFAULT_EMAIL=steven14.as@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=root
       ports:
-        - 8080:80
+        - 5050:80

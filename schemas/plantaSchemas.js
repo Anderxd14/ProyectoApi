@@ -1,19 +1,20 @@
 const Joi = require('joi');
 
-const id = Joi.string().uuid();
-const name = Joi.string().min(3).max(15);
-const Hume = Joi.number().integer().min(10);
+const id = Joi.number().integer();
+const nameP = Joi.string().min(3).max(20);
+const Descrip = Joi.string().max(250);
 
 
 const createPlanta = Joi.object({
-    name: name.required(),
-    Hume: Hume.required(),
+    nameP: nameP.required(),
+    Descrip: Descrip,
 
 });
 
+
 const  updatePlanta = Joi.object({
-    name: name,
-    Hume: Hume,
+    nameP: nameP,
+    Descrip: Descrip,
 
 });
 
@@ -21,6 +22,6 @@ const  updatePlanta = Joi.object({
 const getPlanta = Joi.object({
     id: id.required(),
     
-});
+})
 
 module.exports = {createPlanta,getPlanta,updatePlanta}

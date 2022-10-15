@@ -1,81 +1,52 @@
-const faker = require('faker');
-const boom = require('@hapi/boom')
+const boom = require('@hapi/boom');
+
+
+
+const {models}  = require('./../libs/conexionSequelize');
 
 
 class PlantasService {
 
     constructor() {
-        this.plantas = [];
-        this.generate();
+        
     }
-
-
-    generate() {
-        const limit = 100;
-        for (let index = 0; index < limit; index++) {
-            this.plantas.push({
-                id: faker.datatype.uuid(),
-                name: faker.commerce.productName(),
-                Hume: parseInt(faker.commerce.price(), 10),
-                isBlock: faker.datatype.boolean(),
-            });
-        }
-    }
-
+     
+    
 
 
     async create(data) {
-        const newPlanta = {
-            id: faker.datatype.uuid(),
-            ...data
-        }
-        this.plantas.push(newPlanta);
-        return newPlanta;
+        const newPlan = await models.Planta.create(data);
+        return newPlan;
     };
 
-    find() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(this.plantas)
-            }, 5000);
-        });
-    };
 
-    async findone(id) {
-        const planta = this.plantas.find(item => item.id === id);
-        if (! planta) {
-            throw boom.notFound('id no definido');
-        }
-        if (planta.isBlock) {
-            throw boom.conflict('planta Bloqueada');
+    async find() {
+        const rta = await models.Planta.findAll();
+        return rta;
+      }
+  
+
+      async findOne(id) {
+        const planta = await models.Planta.findByPk(id);
+        if (!planta) {
+          throw boom.notFound('Usuario no definido')
         }
         return planta;
-    }
+      }
 
     async update(id, changes) {
-        const index = this.plantas.findIndex(item => item.id === id);
-        if (index === -1) {
-            throw boom.notFound('id no definido :/')
-        }
-        const planta = this.plantas[index];
-        this.plantas[index] = {
-            ...planta,
-            ...changes
-        };
-        return this.plantas[index];
+        const planta =  await this.findOne(id);
+        const rta = await  planta.update(changes);
+        return rta;
     }
+
 
     async delete(id) {
-        const index = this.plantas.findIndex(item => item.id === id);
-        if (index === -1) {
-            throw boom.notFound('id no definido')
-        }
+        const planta =  await this.findOne(id);
+        await planta.destroy();
+        return{id};
 
-        this.plantas.splice(index, 1);
-        return { id };
     }
-
-
 }
 
 module.exports = PlantasService;
