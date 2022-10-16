@@ -27,8 +27,8 @@ class sensorService {
 }
 
 
-
-
+/*
+pendiente terminar funcion prender en formato  async await
 function prende()
 
 {
@@ -40,7 +40,7 @@ function prende()
 
 }
 
-
+*/
 
 module.exports
 
