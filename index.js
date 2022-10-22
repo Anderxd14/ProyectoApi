@@ -3,7 +3,8 @@ const routerApi=require('./routes')
 const app = express();
 const port = 3000;
 const {logErrors,errorHandler,boomErrorHandler,ormErrorHandler} = require('./middleware/errorHandler')
-const {Initboard} =  require('./services/humedadService');
+
+
 
 app.use(express.json());
 
@@ -14,9 +15,6 @@ app.get('/',(req,res)=>{
 
 
 routerApi(app);
-
-
-
 app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);

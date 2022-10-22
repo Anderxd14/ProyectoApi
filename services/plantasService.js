@@ -1,7 +1,4 @@
 const boom = require('@hapi/boom');
-
-
-
 const {models}  = require('./../libs/conexionSequelize');
 
 
@@ -47,6 +44,7 @@ class PlantasService {
         return{id};
 
     }
+  
 }
 
 module.exports = PlantasService;
