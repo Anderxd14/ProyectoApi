@@ -13,8 +13,11 @@ const options = {
 }
 
 if(config.isPRod){
-  options.ssl={
-    rejectUnauthorized: false
+  options.dealectOptions ={
+    ssl:{
+      rejectUnauthorized: false
+    }
+
   }
 }
 
