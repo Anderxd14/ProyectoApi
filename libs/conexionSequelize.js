@@ -9,7 +9,7 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${
 
 const options = {
   dialect: 'postgres',
-  logging: config.isPRod ? false : true, 
+  logging: config.isPRod = false
 }
 
 if(config.isPRod){
