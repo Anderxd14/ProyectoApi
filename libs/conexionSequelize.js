@@ -9,15 +9,14 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${
 
 const options = {
   dialect: 'postgres',
-  logging: config.isPRod = false
+  logging: config.isProd ? false : true,
 }
 
-if(config.isPRod){
-  options.dealectOptions ={
-    ssl:{
+if (config.isProd) {
+  options.dialectOptions = {
+    ssl: {
       rejectUnauthorized: false
     }
-
   }
 }
 
