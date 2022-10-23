@@ -8,12 +8,10 @@ class PlantasService {
         
     }
      
-    
-
-
+  
     async create(data) {
-        const newPlan = await models.Planta.create(data);
-        return newPlan;
+        const newPlanta = await models.Planta.create(data);
+        return newPlanta;
     };
 
 

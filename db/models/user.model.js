@@ -38,8 +38,11 @@ const UserSchema = {
 }
 
 class User extends Model{
-    static associate() {
-        //associate
+    static associate(models) {
+        this.hasMany(models.Planta,{
+            as:'Plantas',
+            foreignKey: 'userId'
+        })
     }
     static config(sequelize){
         return{

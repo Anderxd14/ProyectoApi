@@ -8,7 +8,8 @@ function setupModels(sequelize) {
     Planta.init(PlantaSchema, Planta.config(sequelize));
     Sensor.init(SensorSchema, Sensor.config(sequelize));
     Humedad.init(HuemdadSchema, Humedad.config(sequelize));
-    
-}
 
+    User.associate(sequelize.models);
+
+}
 module.exports= setupModels;

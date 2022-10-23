@@ -3,11 +3,13 @@ const Joi = require('joi');
 const id = Joi.number().integer();
 const nameP = Joi.string().min(3).max(20);
 const Descrip = Joi.string().max(250);
+const userId = Joi.number().integer();
 
 
 const createPlanta = Joi.object({
     nameP: nameP.required(),
     Descrip: Descrip,
+    userId: userId.required(),
 
 });
 
@@ -15,6 +17,7 @@ const createPlanta = Joi.object({
 const  updatePlanta = Joi.object({
     nameP: nameP,
     Descrip: Descrip,
+    userId: userId,
 
 });
 

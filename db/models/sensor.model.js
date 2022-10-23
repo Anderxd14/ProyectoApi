@@ -26,8 +26,11 @@ const SensorSchema = {
 }
 
 class Sensor extends Model{
-    static associate () {
-
+    static associate (models) {
+        this.hasMany(models.Humedad,{
+            as: 'Humedad',
+            foreignKey: 'SensorId'
+        });
     }
     static config(sequelize){
         return{
