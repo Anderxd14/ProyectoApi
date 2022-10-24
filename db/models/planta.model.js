@@ -1,5 +1,5 @@
 const {Model,DataTypes,Sequelize} = require('sequelize');
-const {USER_TABLE} = require ('./user.model')
+const {JARDINERO_TABLE} = require ('./jardinero.model')
 
 const PLANTA_TABLE = 'plantas';
 
@@ -28,12 +28,12 @@ const PlantaSchema = {
         defaultValue: Sequelize.NOW
     },
 
-    userId:{
+    jardineroId:{
         field: 'user_Id',
         allowNull: 'false',
         type: DataTypes.INTEGER,
         references:{
-            model: USER_TABLE,
+            model: JARDINERO_TABLE,
             key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -44,7 +44,7 @@ const PlantaSchema = {
 
 class Planta extends Model{
     static associate (models) {
-        this.belongsTo(models.User,{as: 'User'});
+        this.belongsTo(models.jardinero,{as: 'jardinero'});
 
         this.hasMany(models.Humedad,{
             as: 'Humedad',

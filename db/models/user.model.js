@@ -10,13 +10,6 @@ const UserSchema = {
         primaryKey:true,
         type: DataTypes.INTEGER
     },
-
-    name:{
-        allowNull: false,
-        type: DataTypes.STRING,
-        unique: true
-    },
-
     email:{
         allowNull:false,
         type: DataTypes.STRING,
@@ -27,6 +20,13 @@ const UserSchema = {
         allowNull:false,
         type: DataTypes.STRING
     },
+
+    role: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: 'Jardinero'
+    },
+
 
     createdAt:{
         allowNull:false,
@@ -39,10 +39,10 @@ const UserSchema = {
 
 class User extends Model{
     static associate(models) {
-        this.hasMany(models.Planta,{
-            as:'Plantas',
+        this.hasOne(models.jardinero, {
+            as: 'jardinero',
             foreignKey: 'userId'
-        })
+        });
     }
     static config(sequelize){
         return{

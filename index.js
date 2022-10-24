@@ -1,5 +1,6 @@
 const express = require('express');
 const routerApi=require('./routes')
+const {checkApi} = require('./middleware/authHandler');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 3000;
@@ -21,10 +22,16 @@ const options = {
   }
 }
 app.use(cors(options));
+require('./utils/auth')
 
 app.get('/',(req,res)=>{
 
     res.send('Hola mi server en express');
+});
+
+app.get('/nuevaruta',checkApi,(req,res)=>{
+
+  res.send('soy una ruta nueva');
 });
 
 
