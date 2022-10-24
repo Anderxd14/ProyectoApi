@@ -1,5 +1,6 @@
 const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
+const { restart } = require('nodemon');
 
 const { models } = require('./../libs/conexionSequelize')
 
@@ -23,7 +24,7 @@ class UsersService {
     const rta = await models.User.findAll({
       include:['jardinero']
     });
-
+    
     return rta;
   }
 
@@ -39,6 +40,7 @@ class UsersService {
     if (!user) {
       throw boom.notFound('Usuario no definido')
     }
+    delete user.dataValues.password
     return user;
   }
 
@@ -46,6 +48,7 @@ class UsersService {
   async update(id, changes) {
     const user = await this.findOne(id);
     const rta = await user.update(changes);
+    delete rta.dataValues.password
     return rta;
   }
 

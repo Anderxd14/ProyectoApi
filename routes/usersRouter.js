@@ -61,6 +61,7 @@ validatorHandler(updateUserSchema, 'body'),
 });
 
 router.delete('/:id',
+
 validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
