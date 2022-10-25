@@ -54,10 +54,10 @@ class jardinero extends Model {
     static associate(models) {
       this.belongsTo(models.User, {as: 'user'});
 
-      
+     
       this.hasMany(models.Planta,{
         as: 'Plantas',
-        foreignKey: 'JardineroId'
+        foreignKey: 'jardineroId'
     });
       
     }

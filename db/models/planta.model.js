@@ -29,8 +29,8 @@ const PlantaSchema = {
     },
 
     jardineroId:{
-        field: 'user_Id',
-        allowNull: 'false',
+        allowNull: false,
+        field: 'jardinero_id',
         type: DataTypes.INTEGER,
         references:{
             model: JARDINERO_TABLE,
