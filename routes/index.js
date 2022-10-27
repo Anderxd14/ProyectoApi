@@ -18,7 +18,7 @@ function routerApi(app){
     router.use('/Sensores', SensorRouter);
     router.use('/Humedad',HumedadRouter);
     router.use('/auth',authRouter);
-    router.use('/Perfil',PerfilRouter);
+    router.use('/Perfil',ProfileRouter);
    
 };
 
