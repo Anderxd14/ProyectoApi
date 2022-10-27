@@ -29,6 +29,22 @@ class PlantasService {
         return planta;
       }
 
+
+      async findByUser(userId) {
+        const plantas = await models.Planta.findAll({
+          where: {
+            '$jardinero.user.id$': userId
+          },
+          include: [
+            {
+              association: 'jardinero',
+              include: ['user']
+            }
+          ]
+        });
+        return plantas;
+      }
+
     async update(id, changes) {
         const planta =  await this.findOne(id);
         const rta = await  planta.update(changes);

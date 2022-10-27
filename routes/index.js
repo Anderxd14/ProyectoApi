@@ -5,6 +5,7 @@ const UsersRouter = require('./usersRouter');
 const SensorRouter = require('./sensorRouter');
 const HumedadRouter = require('./HumedadRouter');
 const authRouter = require('./authRouter');
+const PerfilRouter = require('./profileRouter');
 
 
 function routerApi(app){
@@ -16,6 +17,7 @@ function routerApi(app){
     router.use('/Sensores', SensorRouter);
     router.use('/Humedad',HumedadRouter);
     router.use('/auth',authRouter);
+    router.use('/Perfil',PerfilRouter);
    
 };
 
