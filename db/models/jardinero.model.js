@@ -52,7 +52,7 @@ const jardineroSchema ={
 class jardinero extends Model {
 
     static associate(models) {
-      this.belongsTo(models.User, {as: 'users'});
+      this.belongsTo(models.User, {as: 'user'});
 
      
       this.hasMany(models.Planta,{
