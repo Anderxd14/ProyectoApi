@@ -23,7 +23,7 @@ async (req, res, next) => {
 
   router.get('/:id',
   passport.authenticate('jwt',{session: false}),
-  checkRoles('admin','Jardinero'),
+  checkRoles('Administrador','Jardinero'),
   validatorhHandler(getJardineroSchema, 'params'),
     async (req, res, next) => {
         try {
@@ -65,7 +65,7 @@ async (req, res, next) => {
   
   router.delete('/:id',
   passport.authenticate('jwt',{session: false}),
-  checkRoles('admin'),
+  checkRoles('Administrador'),
   validatorhHandler(getJardineroSchema, 'params'),
     async (req, res, next) => {
       try {
