@@ -24,7 +24,10 @@ class UsersService {
     const rta = await models.User.findAll({
       include:['jardinero']
     });
-    
+    rta.forEach(user =>{
+      delete user.dataValues.password;
+      delete user.dataValues.recoveryToken;
+    })
     return rta;
   }
 
@@ -41,6 +44,7 @@ class UsersService {
       throw boom.notFound('Usuario no definido')
     }
     delete user.dataValues.password
+    delete user.dataValues.recoveryToken;
     return user;
   }
 
@@ -49,20 +53,16 @@ class UsersService {
     const user = await this.findOne(id);
     const rta = await user.update(changes);
     delete rta.dataValues.password
+    delete rta.dataValues.recoveryToken
     return rta;
   }
 
   async delete(id) {
     const user = await this.findOne(id);
     await user.destroy();
-    return { id };
+    return true;
   }
 
-
-
-
 }
-
-
 
 module.exports = UsersService;

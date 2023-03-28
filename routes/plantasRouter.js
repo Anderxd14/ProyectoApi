@@ -2,11 +2,14 @@ const express = require('express');
 const PlantasService = require('./../services/plantasService');
 const validatorHandler = require('./../middleware/validatorhHandler');
 const { createPlanta, getPlanta, updatePlanta } = require('./../schemas/plantaSchemas');
+const passport = require('passport');
 const router = express.Router();
 const service = new PlantasService();
 
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+passport.authenticate('jwt',{session: false}),
+async (req, res, next) => {
     try {
       const plantas = await service.find();
       res.json(plantas);
@@ -15,10 +18,6 @@ router.get('/', async (req, res, next) => {
         next(error);
     }
   });
-
-
-
-
 
 router.get('/:id',
     validatorHandler(getPlanta, 'params'),
