@@ -4,8 +4,10 @@ const validatorHandler = require('./../middleware/validatorhHandler');
 const { createSensor, getSensor, updateSensor } = require('./../schemas/sensorSchemas');
 const router = express.Router();
 const service = new SensorService();
+const passport = require('passport');
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+async (req, res, next) => {
     try {
         const sensor = await service.find();
         res.json(sensor);

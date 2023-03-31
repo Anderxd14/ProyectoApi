@@ -31,21 +31,6 @@ class PlantasService {
       
 
 
-      async findByUser(userId){
-        const plantas = await models.Planta.findAll({
-          where:{
-            '$jardinero.user.id$':userId
-          },
-          include:[
-            {
-              association: 'jardinero',
-              include:['user']
-            }
-          ]
-        })
-        return plantas;
-      }
-
 
       async findByUser(userId) {
         const plantas = await models.Planta.findAll({

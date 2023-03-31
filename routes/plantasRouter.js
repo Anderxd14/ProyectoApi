@@ -21,6 +21,7 @@ async (req, res, next) => {
 
 router.get('/:id',
     validatorHandler(getPlanta, 'params'),
+    passport.authenticate('jwt',{session: false}),
     async (req, res, next) => {
         try {
             const { id } = req.params;
@@ -33,6 +34,7 @@ router.get('/:id',
 
 
 router.post('/',
+    passport.authenticate('jwt',{session: false}),
     validatorHandler(createPlanta, 'body'),
     async (req, res) => {
         const body = req.body;
@@ -43,6 +45,7 @@ router.post('/',
 router.patch('/:id',
     validatorHandler(getPlanta, 'params'),
     validatorHandler(updatePlanta, 'body'),
+    passport.authenticate('jwt',{session: false}),
     async (req, res, next) => {
 
         try {
@@ -60,6 +63,7 @@ router.patch('/:id',
 
 router.delete('/:id', 
 validatorHandler(getPlanta,'params'),
+passport.authenticate('jwt',{session: false}),
 async (req, res, next) => {
     try {
         const { id } = req.params;

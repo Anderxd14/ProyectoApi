@@ -11,7 +11,7 @@ const service = new jardineroService();
 
 router.get('/', 
 passport.authenticate('jwt',{session: false}),
-passport.authenticate('jwt',{session: false}),
+checkRoles('Administrador'),
 async (req, res, next) => {
 
   try {
@@ -24,7 +24,6 @@ async (req, res, next) => {
 
   router.get('/:id',
   passport.authenticate('jwt',{session: false}),
-  checkRoles('Administrador','Jardinero'),
   validatorhHandler(getJardineroSchema, 'params'),
     async (req, res, next) => {
         try {
@@ -51,6 +50,7 @@ async (req, res, next) => {
   
   router.patch('/:id',
   passport.authenticate('jwt',{session: false}),
+  checkRoles('Administrador'),
   validatorhHandler(getJardineroSchema, 'params'),
   validatorhHandler(updateJardineroSchema, 'body'),
     async (req, res, next) => {
@@ -66,7 +66,7 @@ async (req, res, next) => {
   
   router.delete('/:id',
   passport.authenticate('jwt',{session: false}),
-  checkRoles('Administrador'),
+  checkRoles('administrador'),
   validatorhHandler(getJardineroSchema, 'params'),
     async (req, res, next) => {
       try {

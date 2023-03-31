@@ -5,7 +5,8 @@ const AuthService = require('./../services/authService');
 const service = new AuthService;
 const router = express.Router();
 
-router.post('/login',   
+router.post('/login',  
+passport.authenticate('local',{session: false}), 
 async (req, res, next )  => {
     try {
         const user= req.user;

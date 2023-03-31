@@ -16,6 +16,8 @@ class jardineroService {
         rta.forEach(jardinero => {
             delete jardinero.user.dataValues.password;
             delete jardinero.user.dataValues.recoveryToken;
+            delete jardinero.user.dataValues.password;
+            delete jardinero.user.dataValues.recoveryToken;
         });
 
         return rta;
