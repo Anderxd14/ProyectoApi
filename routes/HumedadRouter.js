@@ -7,6 +7,7 @@ const router = express.Router();
 const service = new humedadService();
 
 router.get('/', 
+validatorHandler(getHumedad, 'params'),
 async (req, res, next) => {
     try {
         const regHumedad = await service.find();
@@ -18,6 +19,7 @@ async (req, res, next) => {
 });
 
 router.get('/:id',
+validatorHandler(getHumedad, 'params'),
 validatorHandler(getHumedad, 'params'),
 async (req,res,next) =>{
     try{

@@ -8,7 +8,7 @@ const service = new PlantasService();
 
 
 router.get('/',
-passport.authenticate('jwt',{session: false}),
+//passport.authenticate('jwt',{session: false}),
 async (req, res, next) => {
     try {
       const plantas = await service.find();

@@ -50,7 +50,6 @@ async (req, res, next) => {
   
   router.patch('/:id',
   passport.authenticate('jwt',{session: false}),
-  checkRoles('Administrador'),
   validatorhHandler(getJardineroSchema, 'params'),
   validatorhHandler(updateJardineroSchema, 'body'),
     async (req, res, next) => {
