@@ -11,7 +11,7 @@ const {logErrors,errorHandler,boomErrorHandler,ormErrorHandler} = require('./mid
 app.use(express.json());
 
 
-const whitelist = ['http://localhost:3000', 'https://myapp.co','http://10.0.2.2:3000'];
+const whitelist = ['http://localhost:3000', 'https://myapp.co','http://10.0.2.2:3000','https://proyectoapi-production-1b8e.up.railway.app/'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
