@@ -2,6 +2,8 @@ const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 
 const { models } = require('../libs/conexionSequelize');
+const { jardinero } = require('../db/models/jardinero.model');
+const { use } = require('passport');
 
 class jardineroService {
     constructor() {
@@ -16,20 +18,21 @@ class jardineroService {
         rta.forEach(jardinero => {
             delete jardinero.user.dataValues.password;
             delete jardinero.user.dataValues.recoveryToken;
-            delete jardinero.user.dataValues.password;
-            delete jardinero.user.dataValues.recoveryToken;
+           
         });
 
         return rta;
     }
 
     async findOne(id) {
-        const user = await models.jardinero.findByPk(id);
+        const user = await models.jardinero.findByPk(id,{
+            include: ['user']
+        });
         if (!user) {
             throw boom.notFound('Jardinero no definido')
         }
-        delete user.dataValues.password;
-        delete user.dataValues.recoveryToken;
+        delete user.user.dataValues.password
+        delete user.user.dataValues.recoveryToken;
         return user;
     }
 
